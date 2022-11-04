@@ -48,7 +48,7 @@ instance/
 *.zip
 
 # TXT
-*.txt
+notes.txt
 
 # media
 *.png

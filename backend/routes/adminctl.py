@@ -13,4 +13,6 @@ def get_current_admin(current_user):
         return responsesctl.response(401, message='Token caducado o invalido')
     if not current_user['type'] == 'admin':
         return responsesctl.response(401, message='Ruta no accesible')
+    if not current_user['admin_status'] == 1:
+        return responsesctl.response(401, message='Ruta no accesible (administrador inactivo)')
     return responsesctl.response(200, **current_user)
