@@ -1,6 +1,5 @@
 /** 
  * AQUI ESTAMOS VISUALIZANDO EL SLIDEBAR, AQUI MOSTRAREMOS 
-
 */
 import React from "react";
 import HomeIcon from 'remixicon-react/Home2FillIcon'
@@ -18,9 +17,6 @@ const Sidebar = ({sidebar}) => {
         <div className={sidebar?"sidebar sidebar--open":"sidebar"}>
                 <li><HomeIcon/>Home</li>
                 <li><BookIcon/>Carreras</li>
-                <li><MO/>Materias Optativas</li>
-                <li><ME/>Materias Especializantes</li>
-                <li><Mod/>Modular</li>
                 <li><Ss/>Servicio social</li>
                 <li><Lo/>Login</li>
         </div>
