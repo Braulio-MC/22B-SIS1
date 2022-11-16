@@ -12,6 +12,7 @@ const ToolBar = ({openSidebar}) => {
                 <i><MenuFillIcon/></i>
             </div>
             <div className="title"> Menú</div>
+            <div></div>
         </div>
             
 
