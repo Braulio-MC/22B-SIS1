@@ -3,7 +3,6 @@
 """
 
 from flask import Flask
-from dotenv import load_dotenv
 from routes.authctl import authctl
 from routes.degreectl import degreectl
 from routes.modularctl import modularctl
@@ -21,8 +20,3 @@ app.register_blueprint(servicectl)
 app.register_blueprint(subjectctl)
 app.register_blueprint(studentctl)
 app.register_blueprint(adminctl)
-
-
-if __name__ == '__main__':
-    load_dotenv()
-    app.run(host='0.0.0.0', debug=True)

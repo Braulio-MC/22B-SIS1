@@ -55,9 +55,10 @@ notes.txt
 *.jpg
 *.jpeg
 *.gif
-
+i
 # DB
-db
+db/
+dbctl.py
 
 # Environments
 .env
