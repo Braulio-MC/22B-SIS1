@@ -1,35 +1,32 @@
 import oracledb.connection as conn
 from os import getenv
+from dotenv import load_dotenv, find_dotenv
 
 
-class DBCTL:
+class DBContextManager:
     def __init__(self):
+        load_dotenv(find_dotenv())
         self._connection = None
-        self._cursor = None
 
-    def open_connection(self):
+    def __enter__(self):
         try:
             self._connection = conn.connect(
-                user=getenv('ORACLE_DB_USER'),  # type: ignore
-                password=getenv('ORACLE_DB_PASSWORD'),  # type: ignore
-                host=getenv('ORACLE_DB_HOST'),  # type: ignore
-                port=getenv('ORACLE_DB_PORT'),  # type: ignore
-                service_name=getenv('ORACLE_DB_SERVICE_NAME'),  # type: ignore  
+                user=getenv('ORACLE_DB_USER'),
+                password=getenv('ORACLE_DB_PASSWORD'),
+                host=getenv('ORACLE_DB_HOST'),
+                port=getenv('ORACLE_DB_PORT'),
+                service_name=getenv('ORACLE_DB_SERVICE_NAME'),  
                 encoding='UTF-8',
                 disable_oob=True
             )
-        except Exception as ex:
-            print(ex)
-
-    def get_cursor(self):
-        if self._connection:
             return self._connection.cursor()
-        return None
+        except Exception:
+            pass
 
-    def close_connection(self):
-        if self._connection:
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        try:
             self._connection.cursor().close()
             self._connection.close()
             self._connection = None
-        else:
+        except Exception:
             pass
