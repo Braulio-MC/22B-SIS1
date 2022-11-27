@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route exact path="/login" element={<LoginForm />} />
           <Route exact path="/Carreras" element={<Carreras />} />
+          <Route exact path="/Materia" element={<Materia />} />
           //? Aqui van los enlaces que quieras crear
           <Route path="*" element={''} />
         </Routes>                               
