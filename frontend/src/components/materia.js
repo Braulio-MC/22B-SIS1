@@ -8,7 +8,10 @@ import MaterialTable from "material-table";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 
-const Carreras = () => {
+const Materia = () => {
+
+    const MateriaInfo = useLocation()
+    MateriaInfo.state
 
     const TablaCarreras =[
         {degree_code: 1, degree_name: "Carrera 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
@@ -51,27 +54,23 @@ const Carreras = () => {
     }
 
     const viajar = (props) => {
-        
-        Navigate("/Materia", { state: {data: props}} )
+        Navigate("materia"+props)
         
     }
 
     const Navigate = useNavigate()
-
+    console.log(MateriaInfo.state.data)
 
 
     return(
    <div >
         <div className="relleno"></div>
         <div>
-            <h1>Carreras</h1>
+            <h1>Materia</h1>
             <div className="Parrafo">
-                La Universidad de Guadalajara atiende los requerimientos de formación profesional del estado de Jalisco a través de la red 
-                universitaria, que cuenta con seis centros universitarios temáticos ubicados en la zona metropolitana de Guadalajara y ocho 
-                centros regionales, así como un Sistema de Universidad Virtual, proporcionando una amplia gama de licenciaturas y programas 
-                de estudio profesionales.Esto permite la forja de profesionales altamente capacitados quienes se desempeñan en diversas áreas 
-                del conocimiento para beneficio de la sociedad.
+                
                 </div>
+                
                 <div>
                     <MaterialTable
                         columns={columnas}
@@ -111,4 +110,4 @@ const Carreras = () => {
 
 
 
-export default Carreras
+export default Materia
