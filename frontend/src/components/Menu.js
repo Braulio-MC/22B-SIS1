@@ -1,43 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./loginform.css"
-import ToolBar from "./ToolBar";
-import Sidebar from "./Sidebar";
-import Backdrop from './Backdrop';
 import MenuFillIcon from 'remixicon-react/MenuFillIcon';
-import {button} from 'react';
-import carreras from './carreras';
-import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 
 const Menu = () => {
-
-    const Saludar = () =>{
-        alert("Aún no se redireccionar")
-    }
-
     return(
-        
         <div className="tool-bar">
             <div className="burger">
                 <i><MenuFillIcon/></i>
             </div>
-
-            <NavLink to='/MainMenu' className="login-btn2">
+            <NavLink to='/inicio' className="login-btn2">
                 Menú
             </NavLink>
             <NavLink to='/carreras' className="login-btn2">
                 Carreras
             </NavLink>
-            <NavLink to='/Servicios' className="login-btn2">
+            <NavLink to='/modulares' className="login-btn2">
+                Modulares
+            </NavLink>
+            <NavLink to='/servicio' className="login-btn2">
                 Servicios
             </NavLink>
-            <NavLink to='/Login' className="login-btn2">
+            <NavLink to='/login' className="login-btn2">
                 Login
             </NavLink>
-        
-    </div>
-    )
+        </div>
+    );
 }
 
-export default Menu
+export default Menu;

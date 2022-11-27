@@ -3,6 +3,9 @@ import Menu from "./components/Menu"
 import Materias from "./components/materias"
 import { Routes, Route } from "react-router-dom"
 import Carreras from "./components/carreras";
+import Materia from "./components/materia";
+import Modulares from "./components/modulares";
+import Modular from "./components/modular";
 
 /**
  * NOTA
@@ -17,10 +20,13 @@ function App() {
     <div>
         <Menu/>
         <Routes>
+          <Route exact path="/inicio" />
           <Route exact path="/login" element={<LoginForm />} />
           <Route exact path="/carreras" element={<Carreras />} />
           <Route exact path="/materias" element={<Materias />} />
-          //? Aqui van los enlaces que quieras crear
+          <Route exact path="/materia" element={<Materia />} />
+          <Route exact path="/modulares" element={<Modulares />} />
+          <Route exact path="/modular" element={<Modular />} />
           <Route path="*" element={''} />
         </Routes>                               
     </div>                                      

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./carreras.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "styled-components";
-import DataTable from 'react-data-table-component';
-import { Tooltip } from "bootstrap";
 import MaterialTable from "material-table";
 import { useNavigate } from "react-router-dom";
 
@@ -32,14 +30,6 @@ const Carreras = () => {
         {degree_code: 3, degree_name: "Carrera 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
     ]
 
-
-    const ColumnasCarreras =[
-        {name: 'Código', selector: 'degree_code', sorteable: true},
-        {name: 'Nombre', selector: 'degree_name', sorteable: true},
-        {name: 'Descripción', selector: 'degree_description', sorteable: true},
-        {name: 'Acciones', sorteable: true}
-    ]
-
     const columnas =[
         {
             title:'Código',
@@ -61,15 +51,11 @@ const Carreras = () => {
         
     ]
 
-    const Saludar = ()  => {
-        alert("hola")
-    }
-
     const nav = (props) => {
         navigate("/materias", { state: {rowData: props} })
     }
 
-    return(
+    return (
         <div >
             <div className="relleno"></div>
             <div>
@@ -80,37 +66,33 @@ const Carreras = () => {
                     centros regionales, así como un Sistema de Universidad Virtual, proporcionando una amplia gama de licenciaturas y programas 
                     de estudio profesionales.Esto permite la forja de profesionales altamente capacitados quienes se desempeñan en diversas áreas 
                     del conocimiento para beneficio de la sociedad.
-                    </div>
-                    <div>
-                        <MaterialTable
-                            columns={columnas}
-                            data={degree}
-                            title= 'Carreras CUCEI'
-                            actions={[
-                                {
-                                    icon: 'M',
-                                    tooltip: 'Materias',
-                                    onClick: (event, rowData) => nav(rowData)
-                                }
-                            ]}
-                            options={{
-                                actionsColumnIndex: -1,
-                            }}
-                            localization={{
-                                header:{
-                                    actions: 'Acciones'
-                                }
-                            }}
-                        />
-                    </div>
-                <div className="buttonStandar" onClick={Saludar}>
-                    Botón
+                </div>
+                <div>
+                    <MaterialTable
+                        columns={columnas}
+                        data={degree}
+                        title= 'Carreras en Wikimaterias'
+                        actions={[
+                            {
+                                icon: 'M',
+                                tooltip: 'Visitar materias',
+                                onClick: (event, rowData) => nav(rowData)
+                            }
+                        ]}
+                        options={{
+                            actionsColumnIndex: -1,
+                        }}
+                        localization={{
+                            header:{
+                                actions: 'Acciones'
+                            }
+                        }}
+                    />
                 </div>
             </div>
-            <div className="relleno">   
-            </div>
+            <div className="relleno"></div>
         </div>    
-    )
+    );
 }
 
-export default Carreras
+export default Carreras;

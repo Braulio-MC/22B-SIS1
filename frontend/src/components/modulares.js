@@ -1,43 +1,34 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "styled-components";
 import MaterialTable from "material-table";
-import { useLocation, useNavigate } from "react-router-dom";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
+import { useNavigate } from "react-router-dom";
 
 
-const Materias = () => {
+const Modulares = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const [subject, setSubject] = useState([]);
-    const degreeRowData =  location.state.rowData
+    const [modular, setModular] = useState([]);
 
     useEffect(() => {
-        const fetchSubject = async () => {
+        const fetchModular = async () => {
           try {
-            let degree_code = degreeRowData.degree_code;
-            let url = `http://192.9.147.109/subject/${degree_code}`;
+            let url = `http://192.9.147.109/modular`;
             let response = await fetch(url);
             let data = await response.json();
-            setSubject(data);
+            setModular(data);
           } catch (error) {
             alert("Ha ocurrido un error al solicitar los datos");
           }
         };
-        fetchSubject();
+        fetchModular();
     }, []);
 
-    const TablaCarreras =[
+    const TablaCarreras = [
         {degree_code: 1, degree_name: "Carrera 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
         {degree_code: 2, degree_name: "Carrera 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
         {degree_code: 3, degree_name: "Carrera 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
     ]
 
     const columnas =[
-        {
-            title:'CVE',
-            field:'CVE'
-        },
         {
             title:'Código de carrera',
             field:'degree_code'
@@ -48,48 +39,34 @@ const Materias = () => {
             type: 'date'
         },
         {
-            title:'Créditos',
-            field:'subject_credits',
-            type: 'numeric'
+            title:'Código de proyecto modular',
+            field:'modular_project_code'
         },
         {
-            title: 'Descripción',
-            field: 'subject_description'
+            title:'Descripción',
+            field:'modular_project_description'
         },
-        {
-            title: 'Nombre',
-            field: 'subject_name'
-        },
-        {
-            title: 'Semestre',
-            field: 'subject_semester',
-            type: 'numeric'
-        },
-        {
-            title: 'Tipo',
-            field: 'subject_type'
-        }
     ]
 
     const nav = (props) => {
-        navigate("/materia", { state: {rowData: props} })
+        navigate("/modular", { state: {rowData: props} })
     }
 
     return (
         <div >
             <div className="relleno"></div>
             <div>
-                <h1>{degreeRowData.degree_name}</h1>
+                <h1>Proyectos modulares</h1>
                 <div className="Parrafo"></div>
                 <div>
                     <MaterialTable
                         columns={columnas}
-                        data={subject}
-                        title= {`Materias con código de carrera ${degreeRowData.degree_code}`}
+                        data={modular}
+                        title= 'Proyectos modulares en Wikimaterias'
                         actions={[
                             {
-                                icon: MenuBookIcon,
-                                tooltip: 'Visitar materia',
+                                icon: 'M',
+                                tooltip: 'Visitar modular',
                                 onClick: (event, rowData) => nav(rowData)
                             }
                         ]}
@@ -109,4 +86,4 @@ const Materias = () => {
     );
 }
 
-export default Materias;
+export default Modulares;
