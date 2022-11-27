@@ -7,6 +7,7 @@ import MenuFillIcon from 'remixicon-react/MenuFillIcon';
 import {button} from 'react';
 import carreras from './carreras';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const Menu = () => {
@@ -15,8 +16,6 @@ const Menu = () => {
         alert("Aún no se redireccionar")
     }
 
-
-
     return(
         
         <div className="tool-bar">
@@ -24,21 +23,18 @@ const Menu = () => {
                 <i><MenuFillIcon/></i>
             </div>
 
-            <div className="login-btn" onClick={Saludar}>
+            <NavLink to='/MainMenu' className="login-btn2">
                 Menú
-            </div>
-            <div className="login-btn" onClick={Saludar}>
+            </NavLink>
+            <NavLink to='/carreras' className="login-btn2">
                 Carreras
-            </div>
-            <div className="login-btn" onClick={Saludar}>
-                Servicio
-            </div>
-            <div className="login-btn" onClick={Saludar}>
+            </NavLink>
+            <NavLink to='/Servicios' className="login-btn2">
+                Servicios
+            </NavLink>
+            <NavLink to='/Login' className="login-btn2">
                 Login
-            </div>
-            <a href='/'> Menú</a>
-            <a href='/carreras'> Carreras</a>
-            <a href='/login'>Login</a>
+            </NavLink>
         
     </div>
     )

@@ -106,7 +106,7 @@ input:focus{
 .buttonStandar{
     width: 5em;
     height: 2em;
-    background-color: rgba(168, 207, 246, 0.872);
+    background-color: rgba(246, 168, 241, 0.872);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,6 +115,7 @@ input:focus{
     cursor: pointer;
 }
 
+.buttonStandar:hover {transform: scale(1.15);}
 
 .login-btn:hover {transform: scale(1.25);}
 
@@ -214,23 +215,6 @@ input:focus{
     flex-direction:     column;
     align-items:        center;
 
-}
-
-.rdt_Table{
-    background-color: tomato;
-}
-.rdt_TableCol{
-    background-color: brown;
-}
-.rdt_TableCol_Sortable{
-    background-color: chartreuse;
-}
-.rdt_TableCell{
-    background-color: turquoise;
-}
-.rdt_TableHeader{
-    align-items: center;
-    background-color: chocolate;
 }
 
 
