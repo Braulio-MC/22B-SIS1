@@ -5,37 +5,40 @@ import "styled-components";
 import DataTable from 'react-data-table-component';
 import { Tooltip } from "bootstrap";
 import MaterialTable from "material-table";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
-const Carreras = () => {
-    const navigate = useNavigate();
-    const [degree, setDegree] = useState([]);
+const Materias = () => {
+    const location = useLocation();
+    const [subject, setSubject] = useState();
+    const state =  location.state.rowData
 
     useEffect(() => {
-        const fetchDegree = async () => {
+        const fetchSubject = async () => {
           try {
-            let url = `http://192.9.147.109/degree`;
+            let degree_code = state.degree_code;
+            let url = `http://192.9.147.109/subject/${degree_code}`;
             let response = await fetch(url);
             let data = await response.json();
-            setDegree(data);
+            setSubject(data);
           } catch (error) {
             alert("Ha ocurrido un error al solicitar los datos");
           }
         };
-        fetchDegree();
+        fetchSubject();
     }, []);
 
-    const TablaCarreras = [
+    console.log(subject);
+
+    const TablaCarreras =[
         {degree_code: 1, degree_name: "Carrera 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
         {degree_code: 2, degree_name: "Carrera 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
         {degree_code: 3, degree_name: "Carrera 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
     ]
 
-
-    const ColumnasCarreras =[
-        {name: 'Código', selector: 'degree_code', sorteable: true},
-        {name: 'Nombre', selector: 'degree_name', sorteable: true},
+    const columnasMaterias =[
+        {name: 'CVE', selector: 'cve', sorteable: true},
+        {name: 'Codigo de carrera', selector: 'degree_code', sorteable: true},
         {name: 'Descripción', selector: 'degree_description', sorteable: true},
         {name: 'Acciones', sorteable: true}
     ]
@@ -61,36 +64,28 @@ const Carreras = () => {
         
     ]
 
-    const Saludar = ()  => {
-        alert("hola")
-    }
-
     const nav = (props) => {
-        navigate("/materias", { state: {rowData: props} })
+        console.log(props)
     }
 
     return(
         <div >
             <div className="relleno"></div>
             <div>
-                <h1>Carreras</h1>
+                <h1>Materias de {state.degree_name}</h1>
                 <div className="Parrafo">
-                    La Universidad de Guadalajara atiende los requerimientos de formación profesional del estado de Jalisco a través de la red 
-                    universitaria, que cuenta con seis centros universitarios temáticos ubicados en la zona metropolitana de Guadalajara y ocho 
-                    centros regionales, así como un Sistema de Universidad Virtual, proporcionando una amplia gama de licenciaturas y programas 
-                    de estudio profesionales.Esto permite la forja de profesionales altamente capacitados quienes se desempeñan en diversas áreas 
-                    del conocimiento para beneficio de la sociedad.
                     </div>
                     <div>
                         <MaterialTable
                             columns={columnas}
-                            data={degree}
-                            title= 'Carreras CUCEI'
+                            data={TablaCarreras}
+                            title= 'Materias'
                             actions={[
                                 {
-                                    icon: 'M',
-                                    tooltip: 'Materias',
-                                    onClick: (event, rowData) => nav(rowData)
+                                icon: 'M',
+                                tooltip: 'Materias',
+                                
+                                onClick: (event, rowData) => nav(rowData)
                                 }
                             ]}
                             options={{
@@ -103,7 +98,8 @@ const Carreras = () => {
                             }}
                         />
                     </div>
-                <div className="buttonStandar" onClick={Saludar}>
+            
+                <div className="buttonStandar">
                     Botón
                 </div>
             </div>
@@ -113,4 +109,4 @@ const Carreras = () => {
     )
 }
 
-export default Carreras
+export default Materias

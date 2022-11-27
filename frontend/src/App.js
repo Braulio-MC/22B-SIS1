@@ -1,5 +1,6 @@
 import LoginForm from "./components/loginform"
 import Menu from "./components/Menu"
+import Materias from "./components/materias"
 import { Routes, Route } from "react-router-dom"
 import Carreras from "./components/carreras";
 
@@ -17,8 +18,8 @@ function App() {
         <Menu/>
         <Routes>
           <Route exact path="/login" element={<LoginForm />} />
-          <Route exact path="/Carreras" element={<Carreras />} />
-          <Route exact path="/Materia" element={<Materia />} />
+          <Route exact path="/carreras" element={<Carreras />} />
+          <Route exact path="/materias" element={<Materias />} />
           //? Aqui van los enlaces que quieras crear
           <Route path="*" element={''} />
         </Routes>                               
