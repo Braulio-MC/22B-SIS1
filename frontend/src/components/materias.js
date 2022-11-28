@@ -4,6 +4,8 @@ import "styled-components";
 import MaterialTable from "material-table";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
+import CajaComentarios from "./CajaComentarios";
+import "./Body.css"
 
 
 const Materias = () => {
@@ -11,6 +13,8 @@ const Materias = () => {
     const location = useLocation();
     const [subject, setSubject] = useState([]);
     const degreeRowData =  location.state.rowData
+
+    const comentarios = degreeRowData
 
     useEffect(() => {
         const fetchSubject = async () => {
@@ -28,9 +32,16 @@ const Materias = () => {
     }, []);
 
     const TablaCarreras =[
-        {degree_code: 1, degree_name: "Carrera 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 2, degree_name: "Carrera 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 3, degree_name: "Carrera 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
+        {degree_code: 1, degree_name: "Materia 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
+        {degree_code: 2, degree_name: "Materia 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
+        {degree_code: 3, degree_name: "Materia 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
+    ]
+    
+    const columnasPlaceholder =[
+        {title:"Código", field:"degree_code"},
+        {title:"Carrera", field:"degree_name"},
+        {title:"Descripción", field:"degree_description"},
+        {title:"Número de materias", field:"no_subjects"}
     ]
 
     const columnas =[
@@ -76,15 +87,17 @@ const Materias = () => {
     }
 
     return (
-        <div >
+        <div className="Fondo">
             <div className="relleno"></div>
-            <div>
+            <div className="Body">
                 <h1>{degreeRowData.degree_name}</h1>
-                <div className="Parrafo"></div>
+                <div className="Parrafo">
+                    Esse anim laboris qui sit. Adipisicing commodo cillum velit Lorem ex. Dolor cupidatat pariatur sunt nisi nisi sit ullamco esse tempor laborum. Laborum magna sunt mollit qui elit. Qui sint adipisicing ex qui labore aliquip voluptate officia excepteur ad. Ad quis nisi dolor officia occaecat mollit est. Elit nisi sit reprehenderit ipsum eu nostrud laborum id ullamco quis velit excepteur exercitation irure.
+                </div>
                 <div>
                     <MaterialTable
-                        columns={columnas}
-                        data={subject}
+                        columns={columnasPlaceholder}
+                        data={TablaCarreras}
                         title= {`Materias con código de carrera ${degreeRowData.degree_code}`}
                         actions={[
                             {

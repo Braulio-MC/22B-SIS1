@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "styled-components";
 import MaterialTable from "material-table";
 import { useNavigate } from "react-router-dom";
+import "./Body.css"
 
 
 const Carreras = () => {
@@ -56,9 +57,9 @@ const Carreras = () => {
     }
 
     return (
-        <div >
-            <div className="relleno"></div>
-            <div>
+        <div className="Fondo">
+            <div className="relleno"/>
+            <div className="Body">
                 <h1>Carreras</h1>
                 <div className="Parrafo">
                     La Universidad de Guadalajara atiende los requerimientos de formación profesional del estado de Jalisco a través de la red 
@@ -70,7 +71,7 @@ const Carreras = () => {
                 <div>
                     <MaterialTable
                         columns={columnas}
-                        data={degree}
+                        data={TablaCarreras}
                         title= 'Carreras en Wikimaterias'
                         actions={[
                             {
