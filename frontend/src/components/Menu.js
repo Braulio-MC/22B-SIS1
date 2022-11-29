@@ -22,6 +22,9 @@ const Menu = () => {
     const navL = () => {
         navigate("/login")
     }
+    const navR = () => {
+        navigate("/Registrar")
+    }
 
     return(
         <div className="tool-bar">
@@ -39,6 +42,9 @@ const Menu = () => {
             </div>
             <div className="login-btn2" onClick={navL}>
                 Login
+            </div>
+            <div className="login-btn2" onClick={navR}>
+                Registrar
             </div>
         </div>
     );

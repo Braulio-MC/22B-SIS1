@@ -1,6 +1,7 @@
 import React, {Fragment, useState } from "react";
 import "./loginform.css"
-import { NavLink } from 'react-router-dom';
+import Combobox from "react-widgets/Combobox";
+
 /*
 TENGO QUE PASAR UN JSON CON:
 student_code
@@ -16,10 +17,19 @@ CUENTA NUEVA:
 ///////////////////////////////
 
 */ 
-const LoginForm = () => {
+
+
+const Registrar = () => {
+
+    const [CodigoCarrera,SetCodigoCarrera] = useState({
+            
+    })
+
 
     const [datos,setDatos] = useState({
         student_code:'',
+        student_name:'',
+        student_degree_code:'',
         student_password:''
     })
 
@@ -33,10 +43,10 @@ const LoginForm = () => {
     }
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log(datos.student_code + ' ' + datos.student_password)
+        console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
     }
 
-    console.log(datos.student_code + ' ' + datos.student_password)
+    console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
 
         return(
         <Fragment>
@@ -45,20 +55,15 @@ const LoginForm = () => {
             <div className="relleno">   
         </div>
         <div className="cover">
-            <h1>Login</h1>
+            <h1>Registrar</h1>
                 <input type="text" placeholder="student_code" onChange={handleInputChange} name="student_code"/>
+                <input type="text" placeholder="student_name" onChange={handleInputChange} name="student_name"/>
+                <Combobox data={CodigoCarrera}/>
                 <input type="password" placeholder="student_password" onChange={handleInputChange} name="student_password"/>
-            
-            
+
             <div type="submit" className="btn btn-primary">
-                Login
+                Registrar
             </div>
-            <div>¿Eres nuevo en WikiMaterias?</div>
-            <div  className="login-btn2">
-            <NavLink to='/Registrar' >
-                Registrate
-            </NavLink>
-                </div>
         </div>
         <div className="relleno">   
         </div>
@@ -72,4 +77,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default Registrar

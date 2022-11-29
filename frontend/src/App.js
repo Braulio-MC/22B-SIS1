@@ -8,7 +8,9 @@ import Modulares from "./components/modulares";
 import Modular from "./components/modular";
 import Optativas from "./components/Optativas";
 import Especializantes from "./components/Especializantes";
-
+import Registrar from "./components/Registrar";
+import Servicios from "./components/Servicios";
+import Inicio from "./components/inicio";
 /**
  * NOTA
  * <Route path="*" element={''} />: 
@@ -22,7 +24,7 @@ function App() {
     <div>
         <Menu/>
         <Routes>
-          <Route exact path="/inicio" />
+          <Route exact path="/inicio" element={<Inicio />} />
           <Route exact path="/login" element={<LoginForm />} />
           <Route exact path="/carreras" element={<Carreras />} />
           <Route exact path="/materias" element={<Materias />} />
@@ -31,6 +33,8 @@ function App() {
           <Route exact path="/modular" element={<Modular />} />
           <Route exact path="/optativas" element={<Optativas />} />
           <Route exact path="/especializantes" element={<Especializantes />} />
+          <Route exact path="/Registrar" element={<Registrar />} />
+          <Route exact path="/Servicios" element={<Servicios />} />
           <Route path="*" element={''} />
         </Routes>                               
     </div>                                      

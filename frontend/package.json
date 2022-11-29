@@ -19,8 +19,11 @@
     "react-bootstrap": "^2.6.0",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
+    "react-native": "^0.70.6",
+    "react-native-web": "^0.18.10",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-widgets": "^5.8.4",
     "remixicon-react": "^1.0.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"

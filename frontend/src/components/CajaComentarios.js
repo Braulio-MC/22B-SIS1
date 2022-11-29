@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./loginform.css"
 import MenuFillIcon from 'remixicon-react/MenuFillIcon';
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import {button} from 'react';
 import carreras from './carreras';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import "./CajaComentarios.css"
 import Comentario from './comentario';
 import { withTheme } from 'styled-components';
-
+import { SafeAreaView, StyleSheet,TextInput } from 'react-native';
 
 const CajaComentarios = (props) => {
 
