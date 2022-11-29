@@ -19,11 +19,18 @@ const CajaComentarios = (props) => {
 
     
     const Comentarios = [
-        {usuario:"Juan 1",comentario_contenido:"Está chevere 1",ranking:3},
+        {usuario:"Juan 1",comentario_contenido:"Officia deserunt reprehenderit commodo deserunt magna excepteur Lorem occaecat officia id laborum est reprehenderit cillum. Consectetur sint occaecat incididunt Lorem eiusmod magna nisi dolor officia. Sunt non veniam et in labore aliquip exercitation velit.",ranking:3},
         {usuario:"Juan2",comentario_contenido:"Está chevere 2",ranking:4},
         {usuario:"Juan3",comentario_contenido:"Está chevere 3",ranking:5},
     ]
 
+    const MediaRanking=()=>{
+        for (let index = 0; index < Comentarios.length; index++) {
+            const element = Comentarios[index];
+            
+        }
+    }
+    
     
     
     return(
@@ -38,6 +45,11 @@ const CajaComentarios = (props) => {
                     multiline={true}
                     numberOfLines={4}
                 ></TextInput>
+                <div className='ComentarioAcciones'>
+                    <NavLink to='/Login' className="Comentar-btn">
+                        Comentar
+                    </NavLink>
+                </div>
                 {
                     Comentarios.map((comentario, index) => 
                     {

@@ -1,30 +1,45 @@
 import React from 'react';
 import "./loginform.css"
 import MenuFillIcon from 'remixicon-react/MenuFillIcon';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import Logo from "./imagenes/LogoWM.png"
 
 
 const Menu = () => {
+
+    const navigate = useNavigate();
+
+    const navC = () => {
+        navigate("/carreras")
+    }
+    const navM = () => {
+        navigate("/modulares")
+    }
+    const navS = () => {
+        navigate("/servicios")
+    }
+    const navL = () => {
+        navigate("/login")
+    }
+
     return(
         <div className="tool-bar">
-            <div className="burger">
-                <i><MenuFillIcon/></i>
-            </div>
-            <NavLink to='/inicio' className="login-btn2">
-                Menú
+            <NavLink to='/inicio' className="ContenedorLogo">
+                <img className='logo' src={Logo}/>
             </NavLink>
-            <NavLink to='/carreras' className="login-btn2">
+            <div className="login-btn2" onClick={navC}>
                 Carreras
-            </NavLink>
-            <NavLink to='/modulares' className="login-btn2">
+            </div>
+            <div className="login-btn2" onClick={navM}>
                 Modulares
-            </NavLink>
-            <NavLink to='/servicio' className="login-btn2">
+            </div>
+            <div className="login-btn2" onClick={navS}>
                 Servicios
-            </NavLink>
-            <NavLink to='/login' className="login-btn2">
+            </div>
+            <div className="login-btn2" onClick={navL}>
                 Login
-            </NavLink>
+            </div>
         </div>
     );
 }

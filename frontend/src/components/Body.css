@@ -1,6 +1,6 @@
 .Fondo{
-    background-color: #313d4d;
-    min-height: 100vh;
+    background-color: #031F44;
+    min-height: 91.7vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,9 +11,9 @@
 .Body{
     align-items: center;
     width: 80%;
-    background-color: rgb(180, 173, 170);
+    background-color: #7A7C8F;
     border-radius: .5em;
-    box-shadow: 0 0.18em 1.50em rgb(156,156,156);
+    box-shadow: 0 0.18em 1.50em #7a7c8fb0;
     padding: 2vmax;
 }
 .Relleno{

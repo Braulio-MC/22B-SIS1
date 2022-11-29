@@ -6,10 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import CajaComentarios from "./CajaComentarios";
 import "./Body.css"
-import "@material-ui/icons/MenuBook"    
 
 
-const Materias = () => {
+const Especializantes = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [subject, setSubject] = useState([]);
@@ -123,4 +122,4 @@ const Materias = () => {
     );
 }
 
-export default Materias;
+export default Especializantes;

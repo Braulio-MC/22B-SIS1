@@ -25,7 +25,7 @@
 }
 
 .coverMenus{
-    background-color:rgb(242,218,218,0.5);
+    background-color:rgba(196, 21, 21, 0.5);
     width: 60em;
     height: 30em;
     position: relative;
@@ -206,4 +206,15 @@ input:focus{
 .sidebar--open{
     transform: translateX(0%);
 }
+.logo{
+    height: 3em;
+    cursor: pointer;
+    transition: 0.5s;
+}
 
+.logo:hover {transform: scale(1.25);}
+
+.ContenedorLogo{
+    margin-left: 3em;
+    margin-right: 2em;
+}

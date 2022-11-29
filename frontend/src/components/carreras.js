@@ -35,6 +35,7 @@ const Carreras = () => {
         {
             title:'Código',
             field:'degree_code'
+            
         },
         {
             title:'Carrera',
@@ -52,8 +53,17 @@ const Carreras = () => {
         
     ]
 
-    const nav = (props) => {
+    const navM = (props) => {
         navigate("/materias", { state: {rowData: props} })
+    }
+    const navO = (props) => {
+        navigate("/optativas", { state: {rowData: props} })
+    }
+    const navE = (props) => {
+        navigate("/especializantes", { state: {rowData: props} })
+    }
+    const navP = (props) => {
+        navigate("/modulares", { state: {rowData: props} })
     }
 
     return (
@@ -70,6 +80,7 @@ const Carreras = () => {
                 </div>
                 <div>
                     <MaterialTable
+                        
                         columns={columnas}
                         data={TablaCarreras}
                         title= 'Carreras en Wikimaterias'
@@ -77,7 +88,22 @@ const Carreras = () => {
                             {
                                 icon: 'M',
                                 tooltip: 'Visitar materias',
-                                onClick: (event, rowData) => nav(rowData)
+                                onClick: (event, rowData) => navM(rowData)
+                            },
+                            {
+                                icon: 'O',
+                                tooltip: 'Visitar Optativas',
+                                onClick: (event, rowData) => navO(rowData)
+                            },
+                            {
+                                icon: 'E',
+                                tooltip: 'Visitar Especializante',
+                                onClick: (event, rowData) => navE(rowData)
+                            },
+                            {
+                                icon: 'P',
+                                tooltip: 'Visitar Proyectos Modulares',
+                                onClick: (event, rowData) => navP(rowData)
                             }
                         ]}
                         options={{

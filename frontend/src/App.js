@@ -6,6 +6,8 @@ import Carreras from "./components/carreras";
 import Materia from "./components/materia";
 import Modulares from "./components/modulares";
 import Modular from "./components/modular";
+import Optativas from "./components/Optativas";
+import Especializantes from "./components/Especializantes";
 
 /**
  * NOTA
@@ -27,6 +29,8 @@ function App() {
           <Route exact path="/materia" element={<Materia />} />
           <Route exact path="/modulares" element={<Modulares />} />
           <Route exact path="/modular" element={<Modular />} />
+          <Route exact path="/optativas" element={<Optativas />} />
+          <Route exact path="/especializantes" element={<Especializantes />} />
           <Route path="*" element={''} />
         </Routes>                               
     </div>                                      
