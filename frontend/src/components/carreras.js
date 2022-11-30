@@ -11,6 +11,65 @@ const Carreras = () => {
     const navigate = useNavigate();
     const [degree, setDegree] = useState([]);
 
+    const modificar = (props) => {
+        console.log(props)
+    } 
+
+    const accionesUsuario = [
+        {
+            icon: 'M',
+            tooltip: 'Visitar materias',
+            onClick: (event, rowData) => navM(rowData)
+        },
+        {
+            icon: 'O',
+            tooltip: 'Visitar Optativas',
+            onClick: (event, rowData) => navO(rowData)
+        },
+        {
+            icon: 'E',
+            tooltip: 'Visitar Especializante',
+            onClick: (event, rowData) => navE(rowData)
+        },
+        {
+            icon: 'P',
+            tooltip: 'Visitar Proyectos Modulares',
+            onClick: (event, rowData) => navP(rowData)
+        }
+    ]
+
+    const accionesAdmin = [
+        {
+            icon: 'M',
+            tooltip: 'Visitar materias',
+            onClick: (event, rowData) => navM(rowData)
+        },
+        {
+            icon: 'O',
+            tooltip: 'Visitar Optativas',
+            onClick: (event, rowData) => navO(rowData)
+        },
+        {
+            icon: 'E',
+            tooltip: 'Visitar Especializante',
+            onClick: (event, rowData) => navE(rowData)
+        },
+        {
+            icon: 'P',
+            tooltip: 'Visitar Proyectos Modulares',
+            onClick: (event, rowData) => navP(rowData)
+        },
+        {
+            icon: 'X',
+            tooltip: 'Eliminar',
+            onClick: (event, rowData) => modificar(rowData)
+        }
+    ]
+
+
+
+    const si = false;
+
     useEffect(() => {
         const fetchDegree = async () => {
           try {
@@ -80,32 +139,12 @@ const Carreras = () => {
                 </div>
                 <div>
                     <MaterialTable
-                        
                         columns={columnas}
                         data={degree}
                         title= 'Carreras en Wikimaterias'
-                        actions={[
-                            {
-                                icon: 'M',
-                                tooltip: 'Visitar materias',
-                                onClick: (event, rowData) => navM(rowData)
-                            },
-                            {
-                                icon: 'O',
-                                tooltip: 'Visitar Optativas',
-                                onClick: (event, rowData) => navO(rowData)
-                            },
-                            {
-                                icon: 'E',
-                                tooltip: 'Visitar Especializante',
-                                onClick: (event, rowData) => navE(rowData)
-                            },
-                            {
-                                icon: 'P',
-                                tooltip: 'Visitar Proyectos Modulares',
-                                onClick: (event, rowData) => navP(rowData)
-                            }
-                        ]}
+                        actions={
+                            si? accionesUsuario : accionesAdmin
+                        }
                         options={{
                             actionsColumnIndex: -1,
                         }}

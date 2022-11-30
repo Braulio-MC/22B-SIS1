@@ -54,9 +54,9 @@ const Modulares = () => {
     }
 
     return (
-        <div >
+        <div className="Fondo">
             <div className="relleno"></div>
-            <div>
+            <div className="Body">
                 <h1>Proyectos modulares</h1>
                 <div className="Parrafo"></div>
                 <div>

@@ -31,7 +31,6 @@ const CajaComentarios = (props) => {
 
     const NombrePágina = props.name
 
-    console.log("Si está entrando "+NombrePágina)
     
     const [avgRating, setAvgRating] = useState(0);
 

@@ -16,6 +16,40 @@
     box-shadow: 0 0.18em 1.50em #7a7c8fb0;
     padding: 2vmax;
 }
+.BodyF{
+    margin: 0 auto;
+    align-items: center;
+    width: 80%;
+    background-color: #7A7C8F;
+    border-radius: .5em;
+    box-shadow: 0 0.18em 1.50em #7a7c8fb0;
+    padding: 2vmax;
+}
+.inputF{
+    width: 80%;
+    height: 50px;
+    margin-left: 10%;
+}
+.divF{
+    margin-left: 10%;
+}
 .Relleno{
     height: 3.25em;
 }
+
+.btn-form{
+    width: 10em;
+    height: 6em;
+    background-color: rgba(40, 243, 101, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 0.30em;
+    cursor: pointer;
+    margin-left: 44%;
+    flex-direction: column;
+}
+
+
+.btn-form:hover {transform: scale(1.25); background-color: rgb(40, 243, 101);}

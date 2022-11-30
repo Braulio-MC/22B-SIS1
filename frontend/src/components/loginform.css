@@ -108,7 +108,7 @@ input:focus{
 }
 
 
-.login-btn:hover {transform: scale(1.25);}
+.login-btn:hover {transform: scale(1.25); background-color: rgb(40, 243, 101);}
 
 .login-btn2{
     width: 5em;
@@ -123,7 +123,23 @@ input:focus{
 }
 
 
-.login-btn2:hover {transform: scale(1.25);}
+.login-btn2:hover {transform: scale(1.25); background-color: rgb(40, 243, 101);}
+
+.login-btn3{
+    float: right;
+    width: 5em;
+    height: 2em;
+    background-color: rgba(40, 243, 101, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 0.30em;
+    cursor: pointer;
+}
+
+
+.login-btn3:hover {transform: scale(1.25); background-color: rgb(40, 243, 101);}
 
 .text{
     position: relative;

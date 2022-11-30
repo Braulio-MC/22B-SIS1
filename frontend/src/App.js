@@ -11,6 +11,8 @@ import Especializantes from "./components/Especializantes";
 import Registrar from "./components/Registrar";
 import Servicios from "./components/Servicios";
 import Inicio from "./components/inicio";
+import ModificarMateria from "./components/Modificarmateria";
+import AgregarMateria from "./components/Agregarmateria";
 /**
  * NOTA
  * <Route path="*" element={''} />: 
@@ -35,6 +37,8 @@ function App() {
           <Route exact path="/especializantes" element={<Especializantes />} />
           <Route exact path="/Registrar" element={<Registrar />} />
           <Route exact path="/Servicios" element={<Servicios />} />
+          <Route exact path="/Modificarmateria" element={<ModificarMateria />} />
+          <Route exact path="/Agregarmateria" element={<AgregarMateria />} />
           <Route path="*" element={''} />
         </Routes>                               
     </div>                                      

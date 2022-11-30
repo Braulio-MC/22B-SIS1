@@ -1,5 +1,6 @@
 import React, {Fragment, useState, useEffect } from "react";
 import "./loginform.css"
+import { useNavigate } from "react-router-dom";
 
 /*
 TENGO QUE PASAR UN JSON CON:
@@ -18,6 +19,7 @@ CUENTA NUEVA:
 */ 
 
 const Registrar = () => {
+    const navigate = useNavigate();
     const [codigoCarrera, setCodigoCarrera] = useState([])
     const [datos, setDatos] = useState({
         student_code:'',
@@ -74,6 +76,11 @@ const Registrar = () => {
     const enviarDatos = (event) => {
         event.preventDefault()
         signinUser();
+        navR();
+    }
+
+    const navR = () => {
+        navigate("/login")
     }
 
     console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
@@ -82,7 +89,7 @@ const Registrar = () => {
 
         <Fragment>
 <form onSubmit={enviarDatos}>
-   <div className="covertest">
+   <div className="Fondo">
             <div className="relleno">   
         </div>
         <div className="cover">
@@ -98,9 +105,9 @@ const Registrar = () => {
 
                 <input type="password" placeholder="student_password" onChange={handleInputChange} name="student_password"/>
 
-            <div type="submit" className="btn btn-primary">
-                Registrar
-            </div>
+            <input type="submit" className="btn btn-primary" value={"Registrar"}>
+                
+            </input>
         </div>
         <div className="relleno">   
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./loginform.css"
 import { NavLink } from 'react-router-dom';
 import "./Body.css"
+import { useNavigate } from "react-router-dom";
 
 /*
 TENGO QUE PASAR UN JSON CON:
@@ -20,6 +21,7 @@ CUENTA NUEVA:
 */
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [token, setToken] = useState("");
     const [estudianteActual, setEstudianteActual] = useState({
         student_code: "",
@@ -55,7 +57,9 @@ const LoginForm = () => {
             });
             let token = await response.json();
             setToken(token);
-            sessionStorage.setItem("accessToken", token["token"]);
+            if ("token" in token)
+                sessionStorage.setItem("accessToken", token["token"]);
+
         } catch (error) {
             alert("Ha ocurrido un error al iniciar sesión");
         }
@@ -65,20 +69,21 @@ const LoginForm = () => {
         try {
             let url = `http://192.9.147.109/student/user-info`;
             let headers = {
-                "X-Access-Token": token
+                "X-Access-Token": sessionStorage.getItem("accessToken")
             };
             let response = await fetch(url, {
                 headers: headers,
             });
             let data = await response.json();
             setEstudianteActual(data);
-            sessionStorage.setItem("student_code", estudianteActual["student_code"]);
-            sessionStorage.setItem("student_name", estudianteActual["student_name"]);
-            sessionStorage.setItem("degree_code", estudianteActual["degree_code"]);
-            sessionStorage.setItem("modular_code", estudianteActual["modular_code"]);
-            sessionStorage.setItem("degree_name", estudianteActual["degree_name"]);
-            sessionStorage.setItem("creation_date", estudianteActual["creation_date"]);
-            sessionStorage.setItem("type", estudianteActual["type"]);
+            if ("student_code" in data) {
+                sessionStorage.setItem("student_code", data["student_code"]);
+                sessionStorage.setItem("student_name", data["student_name"]);
+                sessionStorage.setItem("degree_code", data["degree_code"]);
+                sessionStorage.setItem("modular_code", data["modular_code"]);
+                sessionStorage.setItem("degree_name", data["degree_name"]);
+                sessionStorage.setItem("creation_date", data["creation_date"]);
+            }
         } catch (error) {
             alert("Ha ocurrido un error al iniciar sesión");
         }
@@ -93,10 +98,32 @@ const LoginForm = () => {
         }
     }
 
+    const validaCodigo = () => {
+        if (datos.student_code.match('^[0-9]{9}$'))
+            return true;
+        return false;
+    }
+
     const enviarDatos = (event) => {
         event.preventDefault();
-        setSesion();
+        if (validaCodigo()){
+            setSesion();
+            alert("Nos vamos a la verga");
+            navR();
+        }
+        else
+            alert('Algun dato es incorrecto');
         
+    }
+
+    const validaDatos = () => {
+        if (datos.student_code.match('^[0-9]{9}$') && datos.student_password.length < 25)
+            return true; console.log("True")
+        return false;
+    }
+
+    const navR = () => {
+        navigate("/")
     }
 
     return (

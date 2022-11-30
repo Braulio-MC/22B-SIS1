@@ -28,9 +28,17 @@ const Servicios = () => {
             <div className="Body">
                 <h1>Servicio Social</h1>
                 <div className="Parrafo">
-                    Es una actividad formativa y de aplicación de conocimientos que de manera temporal
-                    y obligatoria realizan los alumnos o pasantes de la universidad de Guadalajara al beneficio
-                    de la sociedad, del estado y de la propia Universidad.
+                    <div>
+                        El Servicio Social es la actividad formativa y de aplicación de conocimientos que de manera temporal y obligatoria realizan los alumnos o pasantes de la Universidad en beneficio de la sociedad,
+                        del Estado y de la propia Universidad.
+                    </div>
+    
+                    <div>    
+                        De acuerdo con la visión de la Universidad de Guadalajara, el servicio social debe atender dos ámbitos:
+                        <div className="linea">I. El Académico que le permite al estudiante llevar a la práctica los conocimientos que se han adquirido al tiempo que complementa su formación teórico-profesional.</div>
+                        <div>II. El Social mediante el cual, el alumno puede acercarse a las comunidades de mayor rezago social, apoyar con sus conocimientos profesionales, sensibilizándose y obteniendo una serie de valores humanos y sociales que consolidan su formación integral y de excelencia.</div>
+                        <div>La prestación del servicio social es un requisito indispensable para la titulación de los programas educativos de licenciatura del Sistema de Universidad Virtual.</div>
+                    </div>
                 </div>
                 <div className="relleno"></div>
             <div className="App">
