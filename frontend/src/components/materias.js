@@ -14,8 +14,7 @@ const Materias = () => {
     const location = useLocation();
     const [subject, setSubject] = useState([]);
     const degreeRowData =  location.state.rowData
-
-    const comentarios = degreeRowData
+    const tipo = sessionStorage.getItem("type") == "admin" ? false : true; 
 
     const accionesUsuario = [
         {
@@ -43,8 +42,6 @@ const Materias = () => {
         }
     ]
 
-    const si = false
-
     useEffect(() => {
         const fetchSubject = async () => {
             try {
@@ -62,56 +59,12 @@ const Materias = () => {
         };
         fetchSubject();
     }, []);
-
-    const TablaCarreras =[
-        {degree_code: 1, degree_name: "Materia 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 2, degree_name: "Materia 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 3, degree_name: "Materia 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-    ]
     
     const columnasPlaceholder = [
         {title:"CVE", field:"CVE"},
         {title:"Nombre", field:"subject_name"},
         {title:"Créditos", field:"subject_credits", type:"numeric"},
         {title:"Semestre", field:"subject_semester", type:"numeric"},
-    ]
-
-    const columnas =[
-        {
-            title:'CVE',
-            field:'CVE'
-        },
-        {
-            title:'Código de carrera',
-            field:'degree_code'
-        },
-        {
-            title:'Última fecha de actualización',
-            field:'last_update_date',
-            type: 'date'
-        },
-        {
-            title:'Créditos',
-            field:'subject_credits',
-            type: 'numeric'
-        },
-        {
-            title: 'Descripción',
-            field: 'subject_description'
-        },
-        {
-            title: 'Nombre',
-            field: 'subject_name'
-        },
-        {
-            title: 'Semestre',
-            field: 'subject_semester',
-            type: 'numeric'
-        },
-        {
-            title: 'Tipo',
-            field: 'subject_type'
-        }
     ]
 
     const nav = (props) => {
@@ -136,7 +89,7 @@ const Materias = () => {
                         data={subject}
                         title= {`Materias con código de carrera ${degreeRowData.degree_code}`}
                         actions={
-                            si? accionesUsuario : accionesAdmin
+                            tipo ? accionesUsuario : accionesAdmin
                         }
                         options={{
                             actionsColumnIndex: -1,

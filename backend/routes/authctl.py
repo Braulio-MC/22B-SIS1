@@ -9,6 +9,16 @@ from re import match
 
 authctl = Blueprint('authctl', __name__)
 
+def check_for_student(student_code):
+    with DBContextManager() as cursor:
+        query = '''SELECT CRYPTO_UTIL.DECRYPT(student_code) 
+        FROM student WHERE CRYPTO_UTIL.DECRYPT(student_code) = : 1'''
+        cursor = cursor.execute(query, [student_code])
+        data = cursor.fetchone()
+        if data:
+            return data[0]
+    return None
+
 def get_student_creds(student_code, student_password):
     result = None
     with DBContextManager() as cursor:
@@ -32,6 +42,8 @@ def student_signin():
         if not match(r'^[0-9]{9}$', student_code):
             return response(400, 
             message='El codigo de estudiante debe ser igual a 9 caracteres numericos')
+        if check_for_student(student_code):
+            return response(400, message='Cuenta de usuario ya creada')
         if len(student_name) > 40:
             return response(400, 
             message='El nombre de estudiante debe ser menor a 40 caracteres')
@@ -41,7 +53,7 @@ def student_signin():
         with DBContextManager() as cursor:
             query = '''INSERT INTO student 
             VALUES(CRYPTO_UTIL.ENCRYPT(:1), CRYPTO_UTIL.ENCRYPT(:2), 
-            CRYPTO_UTIL.ENCRYPT(:3), :4)'''
+            CRYPTO_UTIL.ENCRYPT(:3), :4, NEW_TIME(SYSDATE, 'GMT', 'CST'))'''
             cursor.execute(query, [student_code, student_name, 
             student_password, student_degree_code])
             cursor.connection.commit()

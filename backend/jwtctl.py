@@ -64,7 +64,7 @@ def token_required(f):
                 elif token_data['type'] == 'admin':
                     query = '''SELECT CRYPTO_UTIL.DECRYPT(admin_name), admin_status, 
                     creation_date FROM admin WHERE CRYPTO_UTIL.DECRYPT(admin_code) = :1'''
-                    admin_code = data['admin_code']
+                    admin_code = token_data['admin_code']
                     cursor = cursor.execute(query, [admin_code])
                     data = cursor.fetchone()
                     if data:

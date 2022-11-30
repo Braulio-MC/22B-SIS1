@@ -10,6 +10,7 @@ import "./Body.css"
 const Carreras = () => {
     const navigate = useNavigate();
     const [degree, setDegree] = useState([]);
+    const tipo = sessionStorage.getItem("type") == "admin" ? false : true; 
 
     const modificar = (props) => {
         console.log(props)
@@ -68,7 +69,7 @@ const Carreras = () => {
 
 
 
-    const si = true;
+    const si = false;
 
     useEffect(() => {
         const fetchDegree = async () => {
@@ -83,12 +84,6 @@ const Carreras = () => {
         };
         fetchDegree();
     }, []);
-
-    const TablaCarreras = [
-        {degree_code: 1, degree_name: "Carrera 1", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 2, degree_name: "Carrera 2", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-        {degree_code: 3, degree_name: "Carrera 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
-    ]
 
     const columnas =[
         {
@@ -109,18 +104,20 @@ const Carreras = () => {
             field:'no_subjects',
             type: "numeric"
         },
-        
     ]
 
     const navM = (props) => {
         navigate("/materias", { state: {rowData: props} })
     }
+    
     const navO = (props) => {
         navigate("/optativas", { state: {rowData: props} })
     }
+
     const navE = (props) => {
         navigate("/especializantes", { state: {rowData: props} })
     }
+    
     const navP = (props) => {
         navigate("/modulares", { state: {rowData: props} })
     }
@@ -143,7 +140,7 @@ const Carreras = () => {
                         data={degree}
                         title= 'Carreras en Wikimaterias'
                         actions={
-                            si? accionesUsuario : accionesAdmin
+                            tipo ? accionesUsuario : accionesAdmin
                         }
                         options={{
                             actionsColumnIndex: -1,

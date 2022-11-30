@@ -1,29 +1,32 @@
 import React from 'react';
 import "./loginform.css"
 import { NavLink, useNavigate } from 'react-router-dom';
-
 import Logo from "./imagenes/LogoWM.png"
 
 
 const Menu = () => {
-
     const navigate = useNavigate();
 
     const navC = () => {
         navigate("/carreras")
     }
+
     const navM = () => {
         navigate("/modulares")
     }
+
     const navS = () => {
         navigate("/servicios")
     }
+
     const navL = () => {
         navigate("/login")
     }
+
     const navR = () => {
         navigate("/Registrar")
     }
+
     const recarga = () => {
         navigate("/")
     }
@@ -33,9 +36,7 @@ const Menu = () => {
         recarga();
     }
 
-    
-
-    return(
+    return (
         <div className="tool-bar">
             <NavLink to='/' className="ContenedorLogo">
                 <img className='logo' src={Logo}/>
@@ -57,18 +58,8 @@ const Menu = () => {
              </> 
              :
              <>
-                <div className='login-btn3' onClick={logout}>{sessionStorage.getItem('student_name')}</div>
+                <div className='login-btn3' onClick={logout}>Salir</div>
              </>
-             
-            }
-            {
-                sessionStorage.getItem('type') == "student"
-                ?
-                <>
-                </>
-                :
-                <>
-                </>
             }
         </div>
     );

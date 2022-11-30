@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";
 import ChangeRating from "./ChangeRating";
 import "./Body.css";
+import CajaComentarios from "./CajaComentarios";
 
 
 const Servicios = () => {
@@ -44,7 +45,6 @@ const Servicios = () => {
              <StarRating stars={avgRating} />
             </div>
             </div>
-            
         </div>    
     );
 }
