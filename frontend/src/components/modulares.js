@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MaterialTable from "material-table";
 import { useNavigate } from "react-router-dom";
+import "./Body.css"
 
 
 const Modulares = () => {

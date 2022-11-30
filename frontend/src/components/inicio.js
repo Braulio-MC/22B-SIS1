@@ -3,6 +3,7 @@ import "./carreras.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "styled-components";
 import { useNavigate } from "react-router-dom";
+import "./Body.css"
 //import { Image} from "react-native";
 
 
@@ -15,9 +16,9 @@ const Inicio = () => {
     }
 
     return (
-        <div >
+        <div className="Fondo">
             <div className="relleno"></div>
-            <div>
+            <div className="Body">
                 <h1>Wiki Materias</h1>
                 <image  style={{ width: 100, height: 100, marginBottom: 15 }} source={require('./imagenes/LogoWM.png')}></image>
                 <div className="Parrafo">

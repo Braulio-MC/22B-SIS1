@@ -82,7 +82,7 @@ const Carreras = () => {
                     <MaterialTable
                         
                         columns={columnas}
-                        data={TablaCarreras}
+                        data={degree}
                         title= 'Carreras en Wikimaterias'
                         actions={[
                             {

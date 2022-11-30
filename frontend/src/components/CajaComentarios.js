@@ -13,7 +13,16 @@ import StarRating from "./StarRating";
 import ChangeRating from "./ChangeRating";
 import "./Body.css";
 
+
 const CajaComentarios = (props) => {
+    const subjectData = props.subjectRowData;
+    const [comentarios, setComentarios] = useState([]);
+    const [comentarioNuevo, setComentarioNuevo] = useState({
+        cve: subjectData.CVE,
+        student_code: sessionStorage.getItem('student_code'),
+        commentary: "",
+        grade: 0
+    });
 
 
     const [Rankin,Comment] = useState({
@@ -30,6 +39,48 @@ const CajaComentarios = (props) => {
     setAvgRating(input);
   };
     
+    const fetchComentarios = async () => {
+        try {
+            let cve = subjectData.CVE
+            let url = `http://192.9.147.109/subject-comments/${cve}`;
+            let response = await fetch(url);
+            let data = await response.json();
+            setComentarios(data);
+        } catch (error) {
+          alert("Ha ocurrido un error al obtener los comentarios");
+        }
+    };
+
+    const AgregarComentario = async () => {
+        try {
+            let url = `http://192.9.147.109/subject-comments`;
+            let headers = {
+                "Content-Type": "application/json",
+                "X-Access-Token": sessionStorage.getItem('accessToken')
+            };
+            let response = await fetch(url, {
+                method: 'POST', 
+                headers: headers,
+                body: JSON.stringify(comentarioNuevo)
+            });
+            let message = await response.json();
+            alert(message["message"]);
+        } catch (error) {
+          alert("Ha ocurrido un error al publicar el comentario");
+        }
+    };
+
+    const handleOnClick = () => {
+        console.log(sessionStorage);
+    }
+
+    const handleOnChange = (event) => {
+        setComentarioNuevo({
+            ...comentarioNuevo,
+            commentary: event.target.value
+        });
+    }
+
     const Comentarios = [
         {usuario:"Juan 1",comentario_contenido:"Officia deserunt reprehenderit commodo deserunt magna excepteur Lorem occaecat officia id laborum est reprehenderit cillum. Consectetur sint occaecat incididunt Lorem eiusmod magna nisi dolor officia. Sunt non veniam et in labore aliquip exercitation velit.",ranking:3},
         {usuario:"Juan2",comentario_contenido:"Está chevere 2",ranking:4},
@@ -43,7 +94,7 @@ const CajaComentarios = (props) => {
         }
     }
     
-    return(
+    return (
         <div className='ContenedorCaja'>
             <div>
                 Caja de comentarios
@@ -60,21 +111,28 @@ const CajaComentarios = (props) => {
                     placeholder='Comenta tu opinión...'
                     multiline={true}
                     numberOfLines={4}
+                    onChange={handleOnChange}
                 ></TextInput>
                 <div className='ComentarioAcciones'>
-                    <NavLink to='/Login' className="Comentar-btn">
-                        Comentar
-                    </NavLink>
+                    {sessionStorage.getItem('accessToken') 
+                        ? <div className='Comentar-btn' onClick={handleOnClick}>Comentar</div>
+                        : <NavLink to='/login' className="Comentar-btn">Iniciar</NavLink>
+                    }
                 </div>
                 {
-                    Comentarios.map((comentario, index) => 
+                    comentarios.map((comentario, index) => 
                     {
-                        return(<Comentario key={index} usuario={comentario.usuario} comentario_contenido={comentario.comentario_contenido} ranking={comentario.ranking}/>)
+                        return (
+                            <Comentario 
+                                key={index} 
+                                usuario={comentario.student_code} 
+                                comentario_contenido={comentario.commentary} 
+                                ranking={comentario.grade}
+                            />
+                        );
                     })
                 }
             </div>
-            
-        
         </div>
     )
 }
@@ -89,4 +147,4 @@ const styles = StyleSheet.create({
   });
 
 
-export default CajaComentarios
+export default CajaComentarios;

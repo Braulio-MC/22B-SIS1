@@ -19,15 +19,18 @@ const Materias = () => {
 
     useEffect(() => {
         const fetchSubject = async () => {
-          try {
-            let degree_code = degreeRowData.degree_code;
-            let url = `http://192.9.147.109/subject/${degree_code}`;
-            let response = await fetch(url);
-            let data = await response.json();
-            setSubject(data);
-          } catch (error) {
-            alert("Ha ocurrido un error al solicitar los datos");
-          }
+            try {
+                let degree_code = degreeRowData.degree_code;
+                let url = `http://192.9.147.109/subject/${degree_code}`;
+                let response = await fetch(url);
+                let data = await response.json();
+                data = data.filter((item) => {
+                    return item["subject_type"] == "Regular";
+                });
+                setSubject(data);
+            } catch (error) {
+                alert("Ha ocurrido un error al solicitar los datos");
+            }
         };
         fetchSubject();
     }, []);
@@ -38,11 +41,11 @@ const Materias = () => {
         {degree_code: 3, degree_name: "Materia 3", degree_description: "Descripción", no_subjects: 15, no_semesters: 8, last_update_date: "15/03/2021"},
     ]
     
-    const columnasPlaceholder =[
-        {title:"Código", field:"degree_code"},
-        {title:"Carrera", field:"degree_name"},
-        {title:"Descripción", field:"degree_description"},
-        {title:"Número de materias", field:"no_subjects"}
+    const columnasPlaceholder = [
+        {title:"CVE", field:"CVE"},
+        {title:"Nombre", field:"subject_name"},
+        {title:"Créditos", field:"subject_credits", type:"numeric"},
+        {title:"Semestre", field:"subject_semester", type:"numeric"},
     ]
 
     const columnas =[
@@ -98,7 +101,7 @@ const Materias = () => {
                 <div>
                     <MaterialTable
                         columns={columnasPlaceholder}
-                        data={TablaCarreras}
+                        data={subject}
                         title= {`Materias con código de carrera ${degreeRowData.degree_code}`}
                         actions={[
                             {

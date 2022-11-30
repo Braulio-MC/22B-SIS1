@@ -1,4 +1,4 @@
-import React, {Fragment, useState } from "react";
+import React, {Fragment, useState, useEffect } from "react";
 import "./loginform.css"
 
 /*
@@ -18,28 +18,62 @@ CUENTA NUEVA:
 */ 
 
 const Registrar = () => {
-    const [datos,setDatos] = useState({
+    const [codigoCarrera, setCodigoCarrera] = useState([])
+    const [datos, setDatos] = useState({
         student_code:'',
         student_name:'',
-        student_degree_code:'',
+        student_degree_code:'INNI',
         student_password:''
     })
 
     const [Codigo,SetDatos] = useState({
         student_degree_code:'INNI'
     })
+    useEffect(() => {
+        const fetchDegreeCodes = async () => {
+            try {
+                let url = `http://192.9.147.109/degree`;
+                let response = await fetch(url);
+                let data = await response.json();
+                data = data.map((item) => {
+                    return item['degree_code'];
+                });
+                setCodigoCarrera(data);
+            } catch (error) {
+                alert("Ha ocurrido un error al obtener los datos");
+            }
+        };
+        fetchDegreeCodes();
+    }, []);
+
+    const signinUser = async () => {
+        try {
+            let url = `http://192.9.147.109/signin`;
+            let headers = {
+                "Content-Type": "application/json",
+            };
+            let response = await fetch(url, {
+                method: 'POST', 
+                headers: headers,
+                body: JSON.stringify(datos)
+            });
+            let message = await response.json();
+            alert(message['message']);
+        } catch (error) {
+            alert("Ha ocurrido un error al registrarse");
+        }
+    };
 
     const handleInputChange = (event) => {
-        // console.log(event.target.name)
-        // console.log(event.target.value)
         setDatos({
             ...datos,
-            [event.target.name] : event.target.value
-        })
+            [event.target.name] : event.target.value,
+        });
     }
+
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
+        signinUser();
     }
 
     console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
@@ -82,4 +116,4 @@ const Registrar = () => {
     )
 }
 
-export default Registrar
+export default Registrar;

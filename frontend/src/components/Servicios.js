@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";
 import ChangeRating from "./ChangeRating";
 import "./Body.css";
+
+
 const Servicios = () => {
     const navigate = useNavigate();
     const [degree, setDegree] = useState([]);

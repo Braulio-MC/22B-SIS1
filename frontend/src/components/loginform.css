@@ -54,7 +54,7 @@
     height: 7.25em;
 }
 .coverMenu{
-    background-image: url('../components/imagenes/LOGO.png');
+    /*background-image: url('../components/imagenes/LOGO.png');*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

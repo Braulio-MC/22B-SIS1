@@ -26,9 +26,13 @@ const Menu = () => {
         navigate("/Registrar")
     }
 
+    const logout = () => {
+        sessionStorage.clear();
+    }
+
     return(
         <div className="tool-bar">
-            <NavLink to='/inicio' className="ContenedorLogo">
+            <NavLink to='/' className="ContenedorLogo">
                 <img className='logo' src={Logo}/>
             </NavLink>
             <div className="login-btn2" onClick={navC}>
@@ -40,12 +44,14 @@ const Menu = () => {
             <div className="login-btn2" onClick={navS}>
                 Servicios
             </div>
-            <div className="login-btn2" onClick={navL}>
-                Login
-            </div>
-            <div className="login-btn2" onClick={navR}>
-                Registrar
-            </div>
+            {!sessionStorage.getItem('accessToken') 
+             ?
+             <>
+                <div className="login-btn2" onClick={navL}>Login</div> 
+                <div className="login-btn2" onClick={navR}>Registrar</div>
+             </> 
+             :<div className='login-btn2' onClick={logout}>{sessionStorage.getItem('student_name')}</div>
+            }
         </div>
     );
 }
