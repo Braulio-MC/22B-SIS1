@@ -1,6 +1,5 @@
 import React from 'react';
 import "./loginform.css"
-import MenuFillIcon from 'remixicon-react/MenuFillIcon';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import Logo from "./imagenes/LogoWM.png"
@@ -48,13 +47,13 @@ const Menu = () => {
                 Modulares
             </div>
             <div className="login-btn2" onClick={navS}>
-                Servicios
+                Servicio
             </div>
             {!sessionStorage.getItem('accessToken') 
              ?
              <>
-                <div className="login-btn3" onClick={navL}>Login</div> 
-                <div className="login-btn3" onClick={navR}>Registrar</div>
+                <div className="login-btn2" onClick={navL}>Autenticar</div> 
+                <div className="login-btn2" onClick={navR}>Registrar</div>
              </> 
              :
              <>

@@ -59,7 +59,8 @@ const LoginForm = () => {
             setToken(token);
             if ("token" in token)
                 sessionStorage.setItem("accessToken", token["token"]);
-
+            else
+                alert("Credenciales invalidas")
         } catch (error) {
             alert("Ha ocurrido un error al iniciar sesión");
         }
@@ -69,7 +70,7 @@ const LoginForm = () => {
         try {
             let url = `http://192.9.147.109/student/user-info`;
             let headers = {
-                "X-Access-Token": sessionStorage.getItem("accessToken")
+                "X-Access-Token": sessionStorage.getItem('accessToken')
             };
             let response = await fetch(url, {
                 headers: headers,
@@ -83,6 +84,7 @@ const LoginForm = () => {
                 sessionStorage.setItem("modular_code", data["modular_code"]);
                 sessionStorage.setItem("degree_name", data["degree_name"]);
                 sessionStorage.setItem("creation_date", data["creation_date"]);
+                sessionStorage.setItem("type", data["type"]);
             }
         } catch (error) {
             alert("Ha ocurrido un error al iniciar sesión");
@@ -108,18 +110,11 @@ const LoginForm = () => {
         event.preventDefault();
         if (validaCodigo()){
             setSesion();
-            alert("Nos vamos a la verga");
             navR();
         }
         else
             alert('Algun dato es incorrecto');
         
-    }
-
-    const validaDatos = () => {
-        if (datos.student_code.match('^[0-9]{9}$') && datos.student_password.length < 25)
-            return true; console.log("True")
-        return false;
     }
 
     const navR = () => {
@@ -132,9 +127,9 @@ const LoginForm = () => {
                 <div className="body">
                     <div className="relleno"></div>
                     <div className="cover">
-                        <h1>Login</h1>
-                        <input type="text" placeholder="student_code" onChange={handleInputChange} name="student_code"/>
-                        <input type="password" placeholder="student_password" onChange={handleInputChange} name="student_password"/>
+                        <h1>Inicio de sesión</h1>
+                        <input type="text" placeholder="Código de estudiante" onChange={handleInputChange} name="student_code"/>
+                        <input type="password" placeholder="Contraseña" onChange={handleInputChange} name="student_password"/>
                         <input type="submit" className="btn btn-primary" value="Iniciar sesión" />
                         <div>¿Eres nuevo en WikiMaterias?</div>
                         <div className="login-btn2">

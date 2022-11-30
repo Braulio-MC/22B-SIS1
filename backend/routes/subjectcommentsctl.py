@@ -85,9 +85,9 @@ def add_subject_comment(current_user):
         return response(401, message='Token caducado o invalido')
     if not current_user['type'] == 'student':
         return response(401, message='Inicia sesion como estudiante')
-    """ cid = check_for_comment(current_user['student_code'])
+    cid = check_for_comment(current_user['student_code'])
     if cid:
-        return response(400, message=f'Comentario ya publicado con id: {cid}') """
+        return response(400, message=f'Comentario ya publicado con id: {cid}')
     client_data = request.get_json()
     if client_data:
         cve = client_data['cve']
@@ -118,9 +118,9 @@ def update_subject_comment(current_user):
         return response(401, message='Token caducado o invalido')
     if not current_user['type'] == 'student':
         return response(401, message='Inicia sesion como estudiante')
-    """ cid = check_for_comment(current_user['student_code'])
+    cid = check_for_comment(current_user['student_code'])
     if not cid:
-        return response(404, message='Aun no has publicado un comentario') """
+        return response(404, message='Aun no has publicado un comentario')
     client_data = request.get_json()
     if client_data:
         commentary = client_data['commentary']

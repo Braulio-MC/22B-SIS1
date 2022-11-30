@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./loginform.css"
-import MenuFillIcon from 'remixicon-react/MenuFillIcon';
-import {button} from 'react';
-import carreras from './carreras';
-import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import "./CajaComentarios.css"
 import Comentario from './comentario';
-import { withTheme } from 'styled-components';
-import { SafeAreaView, StyleSheet,TextInput } from 'react-native';
+import { StyleSheet,TextInput } from 'react-native';
 import StarRating from "./StarRating";
 import ChangeRating from "./ChangeRating";
 import "./Body.css";
@@ -16,6 +11,7 @@ import "./Body.css";
 
 const CajaComentarios = (props) => {
     const subjectData = props.subjectRowData;
+    const [avgRating, setAvgRating] = useState(0);
     const [comentarios, setComentarios] = useState([]);
     const [comentarioNuevo, setComentarioNuevo] = useState({
         cve: subjectData.CVE,
@@ -24,31 +20,29 @@ const CajaComentarios = (props) => {
         grade: 0
     });
 
-
-    const [Rankin,Comment] = useState({
-        
-    })
-
-    const NombrePágina = props.name
-
-    
-    const [avgRating, setAvgRating] = useState(0);
-
-  const handleRating = (input) => {
-    setAvgRating(input);
-  };
-    
-    const fetchComentarios = async () => {
-        try {
-            let cve = subjectData.CVE
-            let url = `http://192.9.147.109/subject-comments/${cve}`;
-            let response = await fetch(url);
-            let data = await response.json();
-            setComentarios(data);
-        } catch (error) {
-          alert("Ha ocurrido un error al obtener los comentarios");
-        }
+    const handleRating = (input) => {
+        setAvgRating(input);
+        input = Number(input);
+        setComentarioNuevo({
+            ...comentarioNuevo,
+            grade: input
+        });
     };
+    
+    useEffect(() => {
+        const fetchComentarios = async () => {
+            try {
+                let cve = subjectData.CVE
+                let url = `http://192.9.147.109/subject-comments/${cve}`;
+                let response = await fetch(url);
+                let data = await response.json();
+                setComentarios(data);
+            } catch (error) {
+              alert("Ha ocurrido un error al obtener los comentarios");
+            }
+        };
+        fetchComentarios();
+    }, []);
 
     const AgregarComentario = async () => {
         try {
@@ -69,8 +63,21 @@ const CajaComentarios = (props) => {
         }
     };
 
+    const validaDatos = () => {
+        let c = comentarioNuevo.commentary;
+        let g = comentarioNuevo.grade;
+        if (c.length == 0 || (g < 0 || g > 5))
+            return false;
+        return true;
+    }
+
     const handleOnClick = () => {
-        console.log(sessionStorage);
+        if (validaDatos()) {
+            AgregarComentario();
+            
+        } else {
+            alert("Comentario vacio o calificacion invalida");
+        }
     }
 
     const handleOnChange = (event) => {
@@ -99,10 +106,10 @@ const CajaComentarios = (props) => {
                 Caja de comentarios
             </div>
             <div className="App">
-            <StarRating stars={avgRating} />
-             <br />
-             <br />
-             <ChangeRating rating={avgRating} handleRating={handleRating} />
+                <StarRating stars={avgRating} />
+                <br />
+                <br />
+                <ChangeRating rating={avgRating} handleRating={handleRating} />
             </div>
             <div className='Caja'>
                 <TextInput
@@ -111,11 +118,12 @@ const CajaComentarios = (props) => {
                     multiline={true}
                     numberOfLines={4}
                     onChange={handleOnChange}
+                    maxLength={400}
                 ></TextInput>
                 <div className='ComentarioAcciones'>
                     {sessionStorage.getItem('accessToken') 
                         ? <div className='Comentar-btn' onClick={handleOnClick}>Comentar</div>
-                        : <NavLink to='/login' className="Comentar-btn">Iniciar</NavLink>
+                        : <NavLink to='/login' className="Comentar-btn">Autenticar</NavLink>
                     }
                 </div>
                 {
@@ -143,7 +151,7 @@ const styles = StyleSheet.create({
         width: '90%',
         backgroundColor: 'white',
     }
-  });
+});
 
 
 export default CajaComentarios;

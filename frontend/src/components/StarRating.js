@@ -9,7 +9,7 @@ export default function StarRating({ stars }) {
 
   // Round the percentage
   const starPercentageRounded = Math.round(starPercentage);
-  console.log(starPercentageRounded)
+
   const StarStyles = () => {
     return {
       width: starPercentageRounded + "%"

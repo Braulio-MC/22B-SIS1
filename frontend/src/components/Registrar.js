@@ -1,22 +1,10 @@
-import React, {Fragment, useState, useEffect } from "react";
-import "./loginform.css"
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./loginform.css";
+import "./Body.css";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-/*
-TENGO QUE PASAR UN JSON CON:
-student_code
-student_password
-
-//////////////////////////////
-
-CUENTA NUEVA:
-    student_code
-    student_name
-    student_degree_code
-    student_password
-///////////////////////////////
-
-*/ 
 
 const Registrar = () => {
     const navigate = useNavigate();
@@ -24,13 +12,10 @@ const Registrar = () => {
     const [datos, setDatos] = useState({
         student_code:'',
         student_name:'',
-        student_degree_code:'INNI',
+        student_degree_code:'',
         student_password:''
     })
 
-    const [Codigo,SetDatos] = useState({
-        student_degree_code:'INNI'
-    })
     useEffect(() => {
         const fetchDegreeCodes = async () => {
             try {
@@ -73,54 +58,58 @@ const Registrar = () => {
         });
     }
 
-    const enviarDatos = (event) => {
-        event.preventDefault()
-        signinUser();
-        navR();
-    }
-
     const navR = () => {
         navigate("/login")
     }
 
-    console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
+    const handleValueChange = (value) => {
+        if (value) {
+            setDatos({
+                ...datos,
+                student_degree_code: value
+            });
+        }
+    }
 
-        return(
+    const validaDatos = () => {
+        if (datos.student_code.match('^[0-9]{9}$') && datos.student_password < 25)
+            return true;
+        return false;
+    }
 
-        <Fragment>
-<form onSubmit={enviarDatos}>
-   <div className="Fondo">
-            <div className="relleno">   
+    const enviarDatos = (event) => {
+        event.preventDefault();
+        if (validaDatos()) {
+            signinUser();
+            navR();
+        } else {
+            alert("Codigo invalido o contraseña mayor a 25 caracteres");
+        }
+    }
+
+    return (
+        <div className="Fondo">
+            <form onSubmit={enviarDatos}>
+                <div className="body">
+                    <div className="relleno"></div>
+                    <div className="cover">
+                        <h1>Registrar</h1>
+                        <input type="text" placeholder="Código de estudiante" onChange={handleInputChange} name="student_code"/>
+                        <input type="text" placeholder="Nombre completo" onChange={handleInputChange} name="student_name"/>
+                        <Autocomplete 
+                            options={codigoCarrera}
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Código de carrera" />}
+                            onChange={(e, v) => handleValueChange(v)}
+                        />
+                        <input type="password" placeholder="Contraseña" onChange={handleInputChange} name="student_password"/>
+                        <input type="submit" className="btn btn-primary" value="Registrarse" />
+                    </div>
+                    <div className="relleno"></div>
+                </div>
+            </form>
         </div>
-        <div className="cover">
-            <h1>Registrar</h1>
-                <input type="text" placeholder="student_code" onChange={handleInputChange} name="student_code"/>
-                <input type="text" placeholder="student_name" onChange={handleInputChange} name="student_name"/>
-
-                <input list="text" placeholder="student_degree_code" onChange={handleInputChange} name="student_degree_code" />
-                <datalist id="Degree">
-                   <option value={datos.student_degree_code}></option>
-                </datalist>                   
-
-
-                <input type="password" placeholder="student_password" onChange={handleInputChange} name="student_password"/>
-
-            <input type="submit" className="btn btn-primary" value={"Registrar"}>
-                
-            </input>
-        </div>
-        <div className="relleno">   
-        </div>
-    </div>
-</form>
-    <ul>
-                <li>{datos.student_name}</li>
-                <li>{datos.student_code}</li>
-                <li>{datos.student_password}</li>
-                <li>{datos.student_degree_code}</li>
-            </ul>
-    </Fragment>
-    )
+    );
 }
 
 export default Registrar;
