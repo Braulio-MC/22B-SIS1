@@ -13,6 +13,7 @@ import Servicios from "./components/Servicios";
 import Inicio from "./components/inicio";
 import ModificarMateria from "./components/Modificarmateria";
 import AgregarMateria from "./components/Agregarmateria";
+import LoginAdminForm from "./components/loginAdmin";
 /**
  * NOTA
  * <Route path="*" element={''} />: 
@@ -27,6 +28,7 @@ function App() {
         <Menu/>
         <Routes>
           <Route exact path="/" element={<Inicio />} />
+          <Route exact path="/admin/login" element={<LoginAdminForm /> } />
           <Route exact path="/login" element={<LoginForm />} />
           <Route exact path="/carreras" element={<Carreras />} />
           <Route exact path="/materias" element={<Materias />} />
