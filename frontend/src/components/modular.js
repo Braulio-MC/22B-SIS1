@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import CajaComentarios from "./CajaComentarios";
+import CajaComentariosModular from "./CajaComentariosModular";
 
 const Modular = () => {
   const location = useLocation();
@@ -37,7 +37,7 @@ const Modular = () => {
         </div>
         <a href={subjectRowData.modular_project_description}>Proyecto Modular INCO.pdf</a>.
         <div className="Relleno"/>
-        <CajaComentarios subjectRowData={subjectRowData} />
+        <CajaComentariosModular  />
       </div>
       <div className="Relleno"/>
     </div>

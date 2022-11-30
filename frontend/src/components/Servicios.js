@@ -12,10 +12,6 @@ const Servicios = () => {
     const navigate = useNavigate();
     const [degree, setDegree] = useState([]);
 
-    const nav = (props) => {
-        navigate("/servicio", { state: {rowData: props} })
-    }
-
     const [avgRating, setAvgRating] = useState(0);
 
   const handleRating = (input) => {

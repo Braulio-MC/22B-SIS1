@@ -68,7 +68,7 @@ const Carreras = () => {
 
 
 
-    const si = false;
+    const si = true;
 
     useEffect(() => {
         const fetchDegree = async () => {
