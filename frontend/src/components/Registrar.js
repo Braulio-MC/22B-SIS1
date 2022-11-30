@@ -1,6 +1,5 @@
 import React, {Fragment, useState } from "react";
 import "./loginform.css"
-import Combobox from "react-widgets/Combobox";
 
 /*
 TENGO QUE PASAR UN JSON CON:
@@ -18,19 +17,16 @@ CUENTA NUEVA:
 
 */ 
 
-
 const Registrar = () => {
-
-    const [CodigoCarrera,SetCodigoCarrera] = useState({
-            
-    })
-
-
     const [datos,setDatos] = useState({
         student_code:'',
         student_name:'',
         student_degree_code:'',
         student_password:''
+    })
+
+    const [Codigo,SetDatos] = useState({
+        student_degree_code:'INNI'
     })
 
     const handleInputChange = (event) => {
@@ -49,6 +45,7 @@ const Registrar = () => {
     console.log(datos.student_code + ''+ datos.student_name + '' + datos.student_degree_code + ' ' + datos.student_password )
 
         return(
+
         <Fragment>
 <form onSubmit={enviarDatos}>
    <div className="covertest">
@@ -58,7 +55,13 @@ const Registrar = () => {
             <h1>Registrar</h1>
                 <input type="text" placeholder="student_code" onChange={handleInputChange} name="student_code"/>
                 <input type="text" placeholder="student_name" onChange={handleInputChange} name="student_name"/>
-                <Combobox data={CodigoCarrera}/>
+
+                <input list="text" placeholder="student_degree_code" onChange={handleInputChange} name="student_degree_code" />
+                <datalist id="Degree">
+                   <option value={datos.student_degree_code}></option>
+                </datalist>                   
+
+
                 <input type="password" placeholder="student_password" onChange={handleInputChange} name="student_password"/>
 
             <div type="submit" className="btn btn-primary">
@@ -70,8 +73,10 @@ const Registrar = () => {
     </div>
 </form>
     <ul>
+                <li>{datos.student_name}</li>
                 <li>{datos.student_code}</li>
                 <li>{datos.student_password}</li>
+                <li>{datos.student_degree_code}</li>
             </ul>
     </Fragment>
     )

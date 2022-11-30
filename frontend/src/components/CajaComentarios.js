@@ -9,13 +9,26 @@ import "./CajaComentarios.css"
 import Comentario from './comentario';
 import { withTheme } from 'styled-components';
 import { SafeAreaView, StyleSheet,TextInput } from 'react-native';
+import StarRating from "./StarRating";
+import ChangeRating from "./ChangeRating";
+import "./Body.css";
 
 const CajaComentarios = (props) => {
+
+
+    const [Rankin,Comment] = useState({
+        
+    })
 
     const NombrePágina = props.name
 
     console.log("Si está entrando "+NombrePágina)
+    
+    const [avgRating, setAvgRating] = useState(0);
 
+  const handleRating = (input) => {
+    setAvgRating(input);
+  };
     
     const Comentarios = [
         {usuario:"Juan 1",comentario_contenido:"Officia deserunt reprehenderit commodo deserunt magna excepteur Lorem occaecat officia id laborum est reprehenderit cillum. Consectetur sint occaecat incididunt Lorem eiusmod magna nisi dolor officia. Sunt non veniam et in labore aliquip exercitation velit.",ranking:3},
@@ -30,12 +43,16 @@ const CajaComentarios = (props) => {
         }
     }
     
-    
-    
     return(
         <div className='ContenedorCaja'>
             <div>
                 Caja de comentarios
+            </div>
+            <div className="App">
+            <StarRating stars={avgRating} />
+             <br />
+             <br />
+             <ChangeRating rating={avgRating} handleRating={handleRating} />
             </div>
             <div className='Caja'>
                 <TextInput
